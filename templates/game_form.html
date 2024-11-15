@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Form</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Card for Form Container -->
+        <div class="card shadow-sm">
+            <div class="card-header text-center">
+                <h2>{% if form.instance.pk %}Edit Game{% else %}Add New Game{% endif %}</h2>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <!-- Title Field -->
+                    <div class="form-group">
+                        <label for="id_title">Title</label>
+                        <input type="text" name="title" class="form-control" id="id_title" value="{{ form.title.value }}">
+                    </div>
+                    
+                    <!-- Company Field -->
+                    <div class="form-group">
+                        <label for="id_company">Company</label>
+                        <input type="text" name="company" class="form-control" id="id_company" value="{{ form.company.value }}">
+                    </div>
+                    
+                    <!-- Genre Field -->
+                    <div class="form-group">
+                        <label for="id_genre">Genre</label>
+                        <input type="text" name="genre" class="form-control" id="id_genre" value="{{ form.genre.value }}">
+                    </div>
+                    
+                    <!-- Description Field -->
+                    <div class="form-group">
+                        <label for="id_description">Description</label>
+                        <textarea name="description" class="form-control" id="id_description">{{ form.description.value }}</textarea>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary btn-block">Save</button>
+                </form>
+
+                <!-- Back to List Button -->
+                <a href="{% url 'game_list' %}" class="btn btn-secondary btn-block mt-3">Back to List</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
